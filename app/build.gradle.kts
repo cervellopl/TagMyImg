@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -5,9 +7,9 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
-val localProperties = java.util.Properties().also { props ->
+val localProperties = Properties().also { props ->
     rootProject.file("local.properties").takeIf { it.exists() }
-        ?.inputStream()?.use { props.load(it) }
+        ?.inputStream()?.use { stream -> props.load(stream) }
 }
 
 android {
